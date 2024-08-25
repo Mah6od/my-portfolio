@@ -23,3 +23,8 @@ def function(pid):
 @register.filter
 def snippet(value):
     return value[:100]
+
+@register.filter(name='is_persian')
+def is_persian(value):
+    persian_characters = re.compile('[\u0600-\u06FF]')
+    return bool(persian_characters.search(value))
