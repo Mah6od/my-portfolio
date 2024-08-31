@@ -6,5 +6,5 @@ register = template.Library()
 
 @register.inclusion_tag('website/web-blog-contents.html')
 def latestposts():
-    posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
+    posts = Post.objects.filter(status=1).order_by('-published_date')[:3]
     return {'posts':posts}
