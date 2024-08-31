@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from website.forms import NameForm, ContactForm
 from django.contrib import messages
@@ -10,11 +10,10 @@ def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()  
-            # messages.success(request, 'Submitted Successfully!')
-            messages.add_message(request, messages.SUCCESS, 'Submitted Successfully!')
+            form.save()
+            messages.success(request, 'Submitted Successfully!')
         else:
-            messages.add_message(request, messages.ERROR, 'There is an Error!')
+            messages.error(request, 'There was an error.')
     else:
         form = ContactForm()
         
