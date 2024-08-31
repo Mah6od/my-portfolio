@@ -100,8 +100,8 @@
       <div class="row">
         <div class="col-md-8">
           <div class="post-box">
-            <div class="post-thumb">
-              <img src="{% static 'img/post-1.jpg' %}" class="img-fluid" alt="">
+            <div class="feature-img">
+              <img class="img-fluid" src="{{post.image.url}}" alt="">
             </div>
             <div class="post-meta">
               <h1 class="article-title" style="text-align: {% if post.title|is_persian %}right{% else %}left{% endif %};">
@@ -114,7 +114,11 @@
                 </li>
                 <li>
                   <span class="ion-pricetag"></span>
-                  <a href="#">Web Design</a>
+                  <a href="#">
+                    {% for cat in post.category.all %}
+											<li><a href='#'>{{ cat.name }}</a></li>
+										{% endfor %}
+                  </a>
                 </li>
                 <li>
                   <span class="ion-chatbox"></span>
@@ -301,22 +305,11 @@
             <div class="sidebar-content">
               <ul>
                 <li>
-                  <a href="#">Web.</a>
-                </li>
-                <li>
-                  <a href="#">Design.</a>
-                </li>
-                <li>
-                  <a href="#">Travel.</a>
-                </li>
-                <li>
-                  <a href="#">Photoshop</a>
-                </li>
-                <li>
-                  <a href="#">Corel Draw</a>
-                </li>
-                <li>
-                  <a href="#">JavaScript</a>
+                  <a href="#">
+                    {% for cat in post.category.all %}
+											<li><a href='#'>{{ cat.name }}</a></li>
+										{% endfor %}
+                  </a>
                 </li>
               </ul>
             </div>
