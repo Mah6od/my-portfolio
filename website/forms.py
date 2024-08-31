@@ -9,7 +9,7 @@ class NameForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea)
 
 class ContactForm(forms.ModelForm):
-    captcha = CaptchaField()
+    #captcha = CaptchaField()
     class Meta:
         model = Contact
         fields = '__all__'
