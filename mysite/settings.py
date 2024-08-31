@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'taggit',
     'django_summernote',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 STATIC_ROOT = BASE_DIR / 'static'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     BASE_DIR / "statics",
