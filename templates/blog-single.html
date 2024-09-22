@@ -138,77 +138,38 @@
           </div>
           <div class="box-comments">
             <div class="title-box-2">
-              <h4 class="title-comments title-left">Comments (34)</h4>
+              <h4 class="title-comments title-left">Comments ({{comments|length}})</h4>
             </div>
             <ul class="list-comments">
+              {% for comment in comments %}
               <li>
                 <div class="comment-avatar">
                   <img src="{% static 'img/testimonial-2.jpg' %}" alt="">
                 </div>
                 <div class="comment-details">
-                  <h4 class="comment-author">Oliver Colmenares</h4>
-                  <span>18 Sep 2017</span>
+                  <h4 class="comment-author">{{comment.name}}</h4>
+                  <span>{{comment.created_date|date:"d M Y"}}</span>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                    ipsam temporibus maiores
-                    quae natus libero optio, at qui beatae ducimus placeat debitis voluptates amet corporis.
+                    {{comment.message}}
                   </p>
                   <a href="3">Reply</a>
+                  
                 </div>
-              </li>
-              <li>
-                <div class="comment-avatar">
-                  <img src="{% static 'img/testimonial-4.jpg' %}" alt="">
-                </div>
-                <div class="comment-details">
-                  <h4 class="comment-author">Carmen Vegas</h4>
-                  <span>18 Sep 2017</span>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                    ipsam temporibus maiores
-                    quae natus libero optio, at qui beatae ducimus placeat debitis voluptates amet corporis,
-                    veritatis deserunt.
-                  </p>
-                  <a href="3">Reply</a>
-                </div>
-              </li>
-              <li class="comment-children">
-                <div class="comment-avatar">
-                  <img src="{% static 'img/testimonial-2.jpg' %}" alt="">
-                </div>
-                <div class="comment-details">
-                  <h4 class="comment-author">Oliver Colmenares</h4>
-                  <span>18 Sep 2017</span>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                    ipsam temporibus maiores
-                    quae.
-                  </p>
-                  <a href="3">Reply</a>
-                </div>
-              </li>
-              <li>
-                <div class="comment-avatar">
-                  <img src="{% static 'img/testimonial-2.jpg' %}" alt="">
-                </div>
-                <div class="comment-details">
-                  <h4 class="comment-author">Oliver Colmenares</h4>
-                  <span>18 Sep 2017</span>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                    ipsam temporibus maiores
-                    quae natus libero optio.
-                  </p>
-                  <a href="3">Reply</a>
-                </div>
+                
               </li>
             </ul>
+            {% empty %}
+						<p> No comments yet. </p>
+            {% endfor %}
           </div>
           <div class="form-comments">
             <div class="title-box-2">
               <h3 class="title-left">
                 Leave a Reply
               </h3>
+							<form method="post" action='{% url "blog:single" pid=post.id %}'>
+              {% csrf_token %}
+              <input type="hidden" name="post" value={{post.id}}>
             </div>
             <form class="form-mf">
               <div class="row">
@@ -222,11 +183,11 @@
                     <input type="email" class="form-control input-mf" id="inputEmail1" placeholder="Email *" required>
                   </div>
                 </div>
-                <div class="col-md-12 mb-3">
+                <!-- <div class="col-md-12 mb-3">
                   <div class="form-group">
-                    <input type="url" class="form-control input-mf" id="inputUrl" placeholder="Website">
+                    <input type="url" class="form-control input-mf" id="inputUrl" placeholder="Website"> 
                   </div>
-                </div>
+                </div> -->
                 <div class="col-md-12 mb-3">
                   <div class="form-group">
                     <textarea id="textMessage" class="form-control input-mf" placeholder="Comment *" name="message"
@@ -238,6 +199,8 @@
                 </div>
               </div>
             </form>
+
+            
           </div>
         </div>
         <div class="col-md-4">
@@ -245,7 +208,7 @@
             <h5 class="sidebar-title">Search</h5>
             <div class="sidebar-content">
               <form>
-                <div class="input-group">
+                <div class="input-group" action="{% url 'blog:search' %}" method="get">
                   <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
                   <span class="input-group-btn">
                     <button class="btn btn-secondary btn-search" type="button">
@@ -328,11 +291,11 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="copyright-box">
-              <p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>
+               <!--<p class="copyright">&copy; Copyright <strong>DevFolio</strong>. All Rights Reserved</p>/-->
               <div class="credits">
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                 <!--/Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>/-->
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>

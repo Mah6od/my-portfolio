@@ -71,3 +71,16 @@ def blog_category(request, cat_name):
 
     context = {'posts': posts_page}
     return render(request, 'website/blog.html', context)
+
+def blog_search(request):
+    # print(request.__dict__)
+    now = timezone.now()
+    posts = Post.objects.filter(status = 1)
+    if request.method == 'GET':
+         # print(request.GET.get('s'))
+         if s := request.GET.get('s'): # Walrus
+            posts = posts.filter(content__contains=s)
+         
+    
+    context = {"posts":posts}
+    return render(request, 'website/blog.html', context)
